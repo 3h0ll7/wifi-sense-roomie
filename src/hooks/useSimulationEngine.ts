@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { ChartDataPoint, MotionEvent, RoomProbability, RoomConfig, DEFAULT_ROOMS } from '@/types/wifi-motion';
+import type { ChartDataPoint, MotionEvent, RoomProbability, RoomConfig } from '@/types/wifi-motion';
+import { useMotionNotifications } from './useMotionNotifications';
 
 const WINDOW_SIZE = 10;
 const UPDATE_INTERVAL = 500;
