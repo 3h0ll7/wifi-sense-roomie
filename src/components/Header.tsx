@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Wifi, Activity } from 'lucide-react';
+import { Wifi, Activity, Bell, BellOff } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 
 interface HeaderProps {
   isSimulation: boolean;
   onToggleSimulation: (val: boolean) => void;
   isConnected: boolean;
+  notificationsEnabled?: boolean;
+  onToggleNotifications?: (val: boolean) => void;
 }
 
 const Header = ({ isSimulation, onToggleSimulation, isConnected }: HeaderProps) => {
