@@ -95,6 +95,7 @@ export function useSimulationEngine(rooms: RoomConfig[]) {
 
         setEvents(prev => [newEvent, ...prev].slice(0, 500));
         setEventCount(prev => prev + 1);
+        notify(room, newEvent.variance, newEvent.confidence);
         motionEndRef.current = null;
         motionRoomRef.current = null;
         setActiveMotionRoom(null);
