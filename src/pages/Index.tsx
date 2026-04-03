@@ -18,9 +18,21 @@ const Index = () => {
     setIsRunning,
     activeMotionRoom,
     varianceThreshold,
+    notificationsEnabled,
+    setNotificationsEnabled,
+    requestPermission,
   } = useSimulationEngine(DEFAULT_ROOMS);
 
   const isMotionDetected = currentVariance > varianceThreshold;
+
+  const handleToggleNotifications = async (val: boolean) => {
+    if (val) {
+      const granted = await requestPermission();
+      if (granted) setNotificationsEnabled(true);
+    } else {
+      setNotificationsEnabled(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background relative scanline-effect">
