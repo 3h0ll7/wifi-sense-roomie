@@ -10,7 +10,7 @@ interface HeaderProps {
   onToggleNotifications?: (val: boolean) => void;
 }
 
-const Header = ({ isSimulation, onToggleSimulation, isConnected }: HeaderProps) => {
+const Header = ({ isSimulation, onToggleSimulation, isConnected, notificationsEnabled, onToggleNotifications }: HeaderProps) => {
   const location = useLocation();
 
   const navItems = [
