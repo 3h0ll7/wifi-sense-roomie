@@ -40,6 +40,8 @@ const Index = () => {
         isSimulation={isSimulation}
         onToggleSimulation={setIsSimulation}
         isConnected={isRunning}
+        notificationsEnabled={notificationsEnabled}
+        onToggleNotifications={handleToggleNotifications}
       />
 
       <main className="container py-6 space-y-6">
