@@ -50,6 +50,22 @@ const Header = ({ isSimulation, onToggleSimulation, isConnected, notificationsEn
         </div>
 
         <div className="flex items-center gap-4">
+          {onToggleNotifications && (
+            <button
+              onClick={() => onToggleNotifications(!notificationsEnabled)}
+              className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-secondary transition-colors"
+              title={notificationsEnabled ? 'Disable notifications' : 'Enable notifications'}
+            >
+              {notificationsEnabled ? (
+                <Bell className="h-3.5 w-3.5 text-terminal-green" />
+              ) : (
+                <BellOff className="h-3.5 w-3.5 text-muted-foreground" />
+              )}
+              <span className="text-[10px] font-mono text-muted-foreground">
+                {notificationsEnabled ? 'ON' : 'OFF'}
+              </span>
+            </button>
+          )}
           <div className="flex items-center gap-2">
             <span className="text-xs font-mono text-muted-foreground">SIM</span>
             <Switch
