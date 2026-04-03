@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { ChartDataPoint, MotionEvent, RoomProbability, RoomConfig, DEFAULT_ROOMS } from '@/types/wifi-motion';
+import type { ChartDataPoint, MotionEvent, RoomProbability, RoomConfig } from '@/types/wifi-motion';
+import { useMotionNotifications } from './useMotionNotifications';
 
 const WINDOW_SIZE = 10;
 const UPDATE_INTERVAL = 500;
@@ -27,6 +28,9 @@ export function useSimulationEngine(rooms: RoomConfig[]) {
   const [roomProbabilities, setRoomProbabilities] = useState<RoomProbability[]>([]);
   const [isRunning, setIsRunning] = useState(true);
   const [activeMotionRoom, setActiveMotionRoom] = useState<string | null>(null);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+
+  const { requestPermission, notify } = useMotionNotifications(notificationsEnabled);
 
   const tickRef = useRef(0);
   const readingsRef = useRef<Map<string, number[]>>(new Map());
@@ -91,6 +95,7 @@ export function useSimulationEngine(rooms: RoomConfig[]) {
 
         setEvents(prev => [newEvent, ...prev].slice(0, 500));
         setEventCount(prev => prev + 1);
+        notify(room, newEvent.variance, newEvent.confidence);
         motionEndRef.current = null;
         motionRoomRef.current = null;
         setActiveMotionRoom(null);
@@ -158,5 +163,8 @@ export function useSimulationEngine(rooms: RoomConfig[]) {
     setIsRunning,
     activeMotionRoom,
     varianceThreshold,
+    notificationsEnabled,
+    setNotificationsEnabled,
+    requestPermission,
   };
 }
