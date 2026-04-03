@@ -163,5 +163,8 @@ export function useSimulationEngine(rooms: RoomConfig[]) {
     setIsRunning,
     activeMotionRoom,
     varianceThreshold,
+    notificationsEnabled,
+    setNotificationsEnabled,
+    requestPermission,
   };
 }
